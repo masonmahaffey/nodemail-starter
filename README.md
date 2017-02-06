@@ -21,31 +21,10 @@ $.ajax({
     dataType: 'json',
     data: {'email':email,'password': password, 'number': phonenumber},
     success: (data)=>{
-
-
-     if ((data.message.indexOf('011') == -1) && (data.message.indexOf('012') == -1)) {
-		browserHistory.push('/');
-
-		setTimeout(()=>{
-		browserHistory.push('/features');
-
-		}, 10);
-		setTimeout(()=>{
-		browserHistory.push('/login/account');
-
-		}, 20);
-
-
-      localStorage.setItem('token', data.token);
-  	}
-  	else{
-  		alert(data.message)
-  	}
-
-
+      console.log('YOU SEND THE DATA TO THE BACKEND!')
     }
 	}) .fail(function(jqXhr) {
-console.log('failed');
+  console.log('failed');
 });
 ```
 
