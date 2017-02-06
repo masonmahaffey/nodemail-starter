@@ -1,6 +1,6 @@
 # NodeMailer Email Sender - Starter
 
-This is a repo for a starter server for sending emails to yourself or others through gmail using the nodemail node module. Just download and install and you have a good foundation for building application. 
+This is a repo for a starter server for sending emails to yourself or others through gmail using the nodemail node module. Follow the installation steps below to setup the server.
 
 ## Installation
 1. Download the repository
