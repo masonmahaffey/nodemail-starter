@@ -28,4 +28,4 @@ $.ajax({
 });
 ```
 
-If you have any questions hit me up on slack ;)
+If you have any questions hit me up on slack.
