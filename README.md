@@ -28,4 +28,4 @@ $.ajax({
 });
 ```
 
-If you have any questions or requests, an issue ticket on github.
+If you have any questions hit me up on slack ;)
