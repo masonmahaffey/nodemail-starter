@@ -6,7 +6,7 @@ This is a repo for a starter server for sending emails to yourself or others thr
 1. Download the repository
 2. Install npm modules: `npm install`
 4. Start up the server: `node server.js`
-5. Test with Postman or connect using Jquery AJAX from your front-end
+5. Test with [POSTMAN](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en "Postman Install Page") or connect using Jquery AJAX from your front-end
 
 An example of how to connect and pass information to the server from the front end:
 ```javascript
