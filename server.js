@@ -12,23 +12,27 @@ var cors        = require('cors');
 // =================================================================
 // configuration ===================================================
 // =================================================================
-var port = process.env.PORT || 3003; // used to create, sign, and verify tokens
-// use body parser so we can get info from POST and/or URL parameters
-app.use(bodyParser.urlencoded({ extended: false }));
+// Make sure to never push this to github as people will see your actual password
+var gmailEmail = 'YOUR GMAIL EMAIL HERE';
+var gmailEmailPassword = 'YOUR GMAIL EMAIL PASSWORD HERE';
+var myPort = 3003; // <--- CHANGE THE PORT YOU WANT THE SERVER TO RUN ON HERE
+
+
+
+// =================================================================
+// route-configuration ===================================================
+// =================================================================
+var port = process.env.PORT || myPort; // used to create, sign, and verify tokens
+app.use(bodyParser.urlencoded({ extended: false })); // used to get info from POST and/or URL parameters
 app.use(bodyParser.json());
-app.use(cors({credentials: true, origin: true}));
-// use morgan to log requests to the console
-app.use(morgan('dev'));
+app.use(cors({credentials: true, origin: true})); //this kills CORS errors
+app.use(morgan('dev'));// use morgan to log requests to the console
 
 
 // =================================================================
 // routes ==========================================================
 // =================================================================
 // create reusable transporter object using the default SMTP transport
-
-var gmailEmail = 'YOUR GMAIL EMAIL HERE';
-var gmailEmailPassword = 'YOUR GMAIL EMAIL PASSWORD HERE';
-// Make sure to never push this to github as people will see your actual password
 
 let transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -39,7 +43,6 @@ let transporter = nodemailer.createTransport({
 });
 
 app.post('/send/email', (req,res)=>{
-
 	var name = req.body.name;
 	var email = req.body.email;
 	var message = req.body.message;
