@@ -25,28 +25,42 @@ app.use(morgan('dev'));
 // routes ==========================================================
 // =================================================================
 // create reusable transporter object using the default SMTP transport
+
+var gmailEmail = 'YOUR GMAIL EMAIL HERE';
+var gmailEmailPassword = 'YOUR GMAIL EMAIL PASSWORD HERE';
+// Make sure to never push this to github as people will see your actual password
+
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'YOUR GMAIL USERNAME',
-        pass: 'YOUR GMAIL PASSWORD'
+        user: gmailEmail,
+        pass: gmailEmailPassword
     }
 });
 
 app.post('/send/email', (req,res)=>{
 
+	var name = req.body.name;
+	var email = req.body.email;
+	var message = req.body.message;
+
+
 		let mailOptions = {
-		    from: '"Portfolio Website" <PAUL, PUT YOUR EMAIL HERE>', // sender address
-		    to: user.email, // list of receivers
+		    from: '"Portfolio Website"' + email, // sender address
+		    to: gmailEmail, // list of receivers
 		    subject: 'Contact form submission from portfolio ✔ ', // Subject line
 		    // text: 'Hello world ?', // plain text body
-		    html: '<b> Hello, paul. Someone made a contact form submission on your portfolio website. </br> email: ' + req.body.email + '</br> name: ' + req.body.name + '</br> phone number: ' + req.body.number + '</b>' // html body
+		    html: 'Someone made a contact form submission on your portfolio website. <br/><br/> email: ' + email + '<br/> name: ' + name + '<br/> message: <br/>' + '<p>' + message + '</p>' // html body
 		};
 
 		// send mail with defined transport object
 		transporter.sendMail(mailOptions, (error, info)=> {
 		    if (error) {
+		    	res.json({msg: '0'});
 		        return console.log(error);
+		    }
+		    else{
+		    	res.json({msg: '1'});
 		    }
 		    console.log(info.messageId, info.response);
 		});
